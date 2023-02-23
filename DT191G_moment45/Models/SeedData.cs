@@ -137,39 +137,39 @@ namespace DT191G_moment45.Models
                 context.SaveChanges();
             }
 
+            // Borrowed
+            using (var context = new CollectionContext(
+                serviceProvider.GetRequiredService<
+                    DbContextOptions<CollectionContext>>()))
+            {
+                // Look for any Borrowed.
+                if (context.Borrowed.Any())
+                {
+                    return;   // DB has been seeded
+                }
+                context.Borrowed.AddRange(
+                    new Borrowed
+                    {
+                        FriendId = 1,
+                        CollectionId = 2
+                    },
+                    new Borrowed
+                    {
+                        FriendId = 2,
+                        CollectionId = 4
+                    },
+                    new Borrowed
+                    {
+                        FriendId = 1,
+                        CollectionId = 1
+                    }
+                );
+                context.SaveChanges();
+            }
+            }
         }
     }
-}
 
 
 
 
-//// Borrowed
-//using (var context = new CollectionContext(
-//    serviceProvider.GetRequiredService<
-//        DbContextOptions<CollectionContext>>()))
-//{
-//    // Look for any Borrowed.
-//    if (context.Borrowed.Any())
-//    {
-//        return;   // DB has been seeded
-//    }
-//    context.Borrowed.AddRange(
-//        new Borrowed
-//        {
-//            FriendId = 1,
-//            AlbumId = 2
-//        },
-//        new Borrowed
-//        {
-//            FriendId = 2,
-//            AlbumId = 4
-//        },
-//        new Borrowed
-//        {
-//            FriendId = 1,
-//            AlbumId = 1
-//        }
-//    );
-//    context.SaveChanges();
-//}

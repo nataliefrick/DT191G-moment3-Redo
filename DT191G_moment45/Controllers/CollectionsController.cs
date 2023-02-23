@@ -113,15 +113,15 @@ namespace DT191G_moment45.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CollectionId,ArtistId,AlbumTitle,ReleaseYear,SongList")] Collection collection)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 _context.Add(collection);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ArtistId"] = new SelectList(_context.Artist, "ArtistId", "Title", collection.ArtistId);
-            return View(collection);
-        }
+            //ViewData["ArtistId"] = new SelectList(_context.Artist, "ArtistId", "Title", collection.ArtistId);
+            //return View(collection);
+        //}
 
         // GET: Collections/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -152,8 +152,8 @@ namespace DT191G_moment45.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 try
                 {
                     _context.Update(collection);
@@ -171,7 +171,7 @@ namespace DT191G_moment45.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
+            //}
             ViewData["ArtistId"] = new SelectList(_context.Artist, "ArtistId", "Title", collection.ArtistId);
             return View(collection);
         }
